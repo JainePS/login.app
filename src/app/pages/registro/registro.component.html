@@ -6,10 +6,11 @@
                         class="login100-form validate-form flex-sb flex-w">
     
                     <span class="login100-form-title p-b-51">
-                        Crear nueva cuenta
+                        Create new account
                     </span>
     
-                    <!-- <span class="text-danger">El correo es obligatorio</span> -->
+                    <span *ngIf=" f.submitted && f.controls['email'].errors"
+                     class="text-danger animated fadeIn">The email is required</span>
                     <div class="wrap-input100 m-b-16">
                         <input class="input100" 
                                type="email" 
@@ -23,18 +24,22 @@
                         <span class="focus-input100"></span>
                     </div>
 
-                    <!-- <span class="text-danger">El nombre es obligatorio</span> -->
+                    <span *ngIf=" f.submitted && f.controls['name'].errors"
+                     class="text-danger animated fadeIn">The name is required</span>
                     <div class="wrap-input100 m-b-16">
                         <input class="input100" 
                                type="text"
                                [(ngModel)] = 'user.name' 
+                               required
+                               name
                                name="name" 
                                placeholder="Nombre y apellidos">
     
                         <span class="focus-input100"></span>
                     </div>
                     
-                    <!-- <span class="text-danger">La contraseña debe de ser más de 6 letras</span> -->
+                    <span *ngIf=" f.submitted && f.controls['password'].errors"
+                     class="text-danger animated fadeIn">The password must have more than 6 characters</span>
                     <div class="wrap-input100 m-b-16" data-validate = "Password is required">
                         <input class="input100"
                                type="password" 
@@ -50,20 +55,20 @@
                         <div class="contact100-form-checkbox">
                             <input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
                             <label class="label-checkbox100" for="ckb1">
-                                Recordar mi usuario
+                                Remember the user
                             </label>
                         </div>
     
                         <div>
                             <a routerLink="/registro" class="txt1">
-                                ¿Ya tienes cuenta? / Ingresar
+                                Already ave account? / Loggin
                             </a>
                         </div>
                     </div>
     
                     <div class="container-login100-form-btn m-t-17">
                         <button class="login100-form-btn" type="submit">
-                            Crear cuenta
+                            Create account
                         </button>
                     </div>
     
