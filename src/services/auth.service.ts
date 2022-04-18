@@ -22,18 +22,34 @@ export class AuthService {
 
   constructor( private http: HttpClient) { 
 
-  // logout(){
-
-  // };
-
-  // loggin(user: UserModel){
-  //   console.log('teste');
-  // }
-
-  // newUser(user: UserModel){
-
-  // }
-
-
+ 
+  
   }
+
+  logout(){
+
+  };
+
+  login(user: UserModel){
+    const authData = {
+      ...user,returnSecureToken: true
+    };
+    return this.http.post(
+      `${this.Url}signInWithPassword?key=${this.apikey}`,
+      authData
+    );
+  }
+
+
+  newUser(user: UserModel){
+
+    const authData = {
+      ...user,returnSecureToken: true
+    };
+    return this.http.post(
+      `${this.Url}signUp?key=${this.apikey}`,
+      authData
+    );
+  } 
 }
+
