@@ -1,26 +1,29 @@
-import { Component, OnInit } from '@angular/core';
-import { UserModel } from 'src/app/models/user.model';
+import { Component, OnInit } from "@angular/core";
+import { UserModel } from "src/app/models/user.model";
+import { NgForm } from "@angular/forms";
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.component.html',
-  styleUrls: ['./registro.component.css']
+  selector: "app-registro",
+  templateUrl: "./registro.component.html",
+  styleUrls: ["./registro.component.css"],
 })
 export class RegistroComponent implements OnInit {
-
   user: UserModel;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() { 
+  ngOnInit() {
     this.user = new UserModel();
-    this.user.email = 'jaine.aps@hotmail.com';
+    this.user.email = "jaine.aps@hotmail.com";
   }
 
-  onSubmit(){
-    console.log('Forms sent');
+  onSubmit(form: NgForm) {
+    if (form.invalid) {
+      return;
+    }
+
+    console.log("Forms sent");
     console.log(this.user);
-    
-    
+    console.log(form);
   }
 }
