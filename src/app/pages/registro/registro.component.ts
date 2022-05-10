@@ -5,7 +5,6 @@ import { AuthService } from "src/services/auth.service";
 import Swal from "sweetalert2";
 import { Router } from "@angular/router";
 
-
 @Component({
   selector: "app-registro",
   templateUrl: "./registro.component.html",
@@ -13,10 +12,8 @@ import { Router } from "@angular/router";
 })
 export class RegistroComponent implements OnInit {
   user: UserModel;
- 
 
-  constructor(private auth: AuthService, 
-              private router: Router) {}
+  constructor(private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
     this.user = new UserModel();
@@ -29,26 +26,26 @@ export class RegistroComponent implements OnInit {
     }
 
     Swal.fire({
-      allowOutsideClick:false,
-      type: 'info',
-      text: 'Wait please...'
+      allowOutsideClick: false,
+      type: "info",
+      text: "Wait please...",
     });
 
     Swal.showLoading();
-      this.auth.newUser(this.user).subscribe( answ =>{
-       console.log(answ);
-       Swal.close();
-       this.router.navigateByUrl('/home');
-       
-       }, (err) =>{
-      console.log(err.error.error.message);
-      Swal.fire({
-        type: 'error',
-        title:'Error while authenticate',
-        text: err.error.error.message
-      });
-      
-        
-       });
+    this.auth.newUser(this.user).subscribe(
+      (answ) => {
+        console.log(answ);
+        Swal.close();
+        this.router.navigateByUrl("/home");
+      },
+      (err) => {
+        console.log(err.error.error.message);
+        Swal.fire({
+          type: "error",
+          title: "Error while authenticate",
+          text: err.error.error.message,
+        });
+      }
+    );
   }
 }
